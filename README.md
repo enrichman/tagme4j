@@ -6,6 +6,32 @@ TagMe API client for Java applications
 -- WIP
 
 
+Examples
+--------
+
+Instanciate a TagMeClient with your token and execute a request:
+
+```
+TagMeClient tagMeClient = new TagMeClient("TOKEN");
+
+TagResponse tagResponse = tagMeClient
+                .tag()
+                .text("My text")
+                .execute();
+                
+SpotResponse spotResponse = tagMeClient
+                .spot()
+                .text("My text")
+                .execute();
+                
+RelResponse relResponse = tagMeClient
+                .rel()
+                .tt("Linked_data Semantic_Web")
+                .tt("University_of_Pisa Massachusetts_Institute_of_Technology")
+                .tt("James_Cameron Downing_Street")
+                .execute();
+```
+
 Developed By
 --------
 
