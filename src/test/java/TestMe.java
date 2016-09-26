@@ -24,7 +24,7 @@ public class TestMe extends TestCase {
                 .execute();
         
         for (Annotation a : tagResponse.getAnnotations()){
-            System.out.printf("%s -> %s (rho=%f, lp=%f)%n", a.getSpot(), a.getTitle(), a.getRho(), a.getLink_probability());
+            System.out.printf("%s -> %s (rho=%f, lp=%f)%n", a.getSpot(), a.getTitle(), a.getRho(), a.getLinkProbability());
         }
 
         SpotResponse spotResponse = tagMeClient

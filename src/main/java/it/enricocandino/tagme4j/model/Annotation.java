@@ -5,6 +5,8 @@
  */
 package it.enricocandino.tagme4j.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Annotation {
@@ -15,8 +17,10 @@ public class Annotation {
     private int end;
     private double rho;
     private String spot;
-    private double link_probability;
-    private List<String> dbpedia_categories;
+    @SerializedName("link_probability")
+    private double linkProbability;
+    @SerializedName("dbpedia_categories")
+    private List<String> dbpediaCategories;
 
     public int getId() {
         return id;
@@ -66,20 +70,20 @@ public class Annotation {
         this.spot = spot;
     }
 
-    public double getLink_probability() {
-        return link_probability;
+    public double getLinkProbability() {
+        return linkProbability;
     }
 
-    public void setLink_probability(double link_probability) {
-        this.link_probability = link_probability;
+    public void setLinkProbability(double linkProbability) {
+        this.linkProbability = linkProbability;
     }
 
-    public List<String> getDbpedia_categories() {
-        return dbpedia_categories;
+    public List<String> getDbpediaCategories() {
+        return dbpediaCategories;
     }
 
-    public void setDbpedia_categories(List<String> dbpedia_categories) {
-        this.dbpedia_categories = dbpedia_categories;
+    public void setDbpediaCategories(List<String> dbpediaCategories) {
+        this.dbpediaCategories = dbpediaCategories;
     }
 
 
