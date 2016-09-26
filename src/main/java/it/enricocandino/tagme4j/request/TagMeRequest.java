@@ -7,6 +7,7 @@ package it.enricocandino.tagme4j.request;
 
 import com.google.gson.Gson;
 import it.enricocandino.tagme4j.TagMeClient;
+import it.enricocandino.tagme4j.TagMeException;
 import it.enricocandino.tagme4j.response.TagMeResponse;
 import okhttp3.*;
 
@@ -42,6 +43,12 @@ public abstract class TagMeRequest<T extends TagMeResponse> {
             Gson gson = tagMeClient.getGson();
 
             Response response = client.newCall(getRequest()).execute();
+            if (response.code() != 200)
+                throw new TagMeException(
+                    String.format("Request to TagMe failed with HTTP code %d, message: %s",
+                                  response.code(),
+                                  response.body().string()));
+
             String json = response.body().string();
             tagMeResponse = gson.fromJson(json, clazz);
         } catch (Exception e) {

@@ -7,22 +7,22 @@ package it.enricocandino.tagme4j.model;
 
 import java.util.List;
 
-public class Tag {
+public class Annotation {
 
-    private Long id;
+    private int id;
     private String title;
-    private Long start;
-    private Long end;
+    private int start;
+    private int end;
     private String rho;
     private String spot;
     private String link_probability;
     private List<String> dbpedia_categories;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,24 +34,24 @@ public class Tag {
         this.title = title;
     }
 
-    public Long getStart() {
+    public int getStart() {
         return start;
     }
 
-    public void setStart(Long start) {
+    public void setStart(int start) {
         this.start = start;
     }
 
-    public Long getEnd() {
+    public int getEnd() {
         return end;
     }
 
-    public void setEnd(Long end) {
+    public void setEnd(int end) {
         this.end = end;
     }
 
-    public String getRho() {
-        return rho;
+    public double getRho() {
+        return Double.parseDouble(rho);
     }
 
     public void setRho(String rho) {
@@ -66,8 +66,8 @@ public class Tag {
         this.spot = spot;
     }
 
-    public String getLink_probability() {
-        return link_probability;
+    public double getLink_probability() {
+        return Double.parseDouble(link_probability);
     }
 
     public void setLink_probability(String link_probability) {

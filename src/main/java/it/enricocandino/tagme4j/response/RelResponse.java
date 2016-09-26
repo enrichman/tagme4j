@@ -5,18 +5,18 @@
  */
 package it.enricocandino.tagme4j.response;
 
-import it.enricocandino.tagme4j.model.Couple;
+import it.enricocandino.tagme4j.model.Relatedness;
 import java.util.List;
 
 public class RelResponse extends TagMeResponse {
 
-    private List<Couple> result;
+    private List<Relatedness> result;
 
-    public List<Couple> getResult() {
+    public List<Relatedness> getResult() {
         return result;
     }
 
-    public void setResult(List<Couple> result) {
+    public void setResult(List<Relatedness> result) {
         this.result = result;
     }
 }

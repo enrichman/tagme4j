@@ -5,24 +5,32 @@
  */
 package it.enricocandino.tagme4j.model;
 
-public class Couple {
+public class Relatedness {
 
     private String couple;
     private String rel;
-
-    public String getCouple() {
-        return couple;
-    }
 
     public void setCouple(String couple) {
         this.couple = couple;
     }
 
-    public String getRel() {
-        return rel;
+    public double getRel() {
+        return Double.parseDouble(rel);
     }
 
     public void setRel(String rel) {
         this.rel = rel;
+    }
+    
+    public String getEntity0(){
+    	return couple.split(" ")[0];
+    }
+
+    public String getEntity1(){
+    	return couple.split(" ")[1];
+    }
+    
+    public boolean entitiesExist(){
+        return rel != null;
     }
 }

@@ -5,14 +5,14 @@
  */
 package it.enricocandino.tagme4j.response;
 
-import it.enricocandino.tagme4j.model.Tag;
+import it.enricocandino.tagme4j.model.Annotation;
 
 import java.util.List;
 
 public class TagResponse extends TagMeResponse {
 
     private String test;
-    private List<Tag> annotations;
+    private List<Annotation> annotations;
 
     public String getTest() {
         return test;
@@ -22,11 +22,11 @@ public class TagResponse extends TagMeResponse {
         this.test = test;
     }
 
-    public List<Tag> getAnnotations() {
+    public List<Annotation> getAnnotations() {
         return annotations;
     }
 
-    public void setAnnotations(List<Tag> annotations) {
+    public void setAnnotations(List<Annotation> annotations) {
         this.annotations = annotations;
     }
 }

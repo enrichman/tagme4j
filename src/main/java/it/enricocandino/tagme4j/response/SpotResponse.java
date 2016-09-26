@@ -5,19 +5,19 @@
  */
 package it.enricocandino.tagme4j.response;
 
-import it.enricocandino.tagme4j.model.Spot;
+import it.enricocandino.tagme4j.model.Mention;
 
 import java.util.List;
 
 public class SpotResponse extends TagMeResponse {
 
-    private List<Spot> spots;
+    private List<Mention> spots;
 
-    public List<Spot> getSpots() {
+    public List<Mention> getSpots() {
         return spots;
     }
 
-    public void setSpots(List<Spot> spots) {
+    public void setSpots(List<Mention> spots) {
         this.spots = spots;
     }
 }

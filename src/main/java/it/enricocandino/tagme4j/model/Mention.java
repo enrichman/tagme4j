@@ -5,7 +5,7 @@
  */
 package it.enricocandino.tagme4j.model;
 
-public class Spot {
+public class Mention {
 
     private String spot;
     private String lp;
@@ -20,8 +20,8 @@ public class Spot {
         this.spot = spot;
     }
 
-    public String getLp() {
-        return lp;
+    public double getLp() {
+        return Double.parseDouble(lp);
     }
 
     public void setLp(String lp) {
