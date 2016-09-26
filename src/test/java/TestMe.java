@@ -40,13 +40,15 @@ public class TestMe extends TestCase {
                 .tt("Linked_data Semantic_Web")
                 .tt("University_of_Pisa Massachusetts_Institute_of_Technology")
                 .tt("James_Cameron Downing_Street")
-                .tt("James_Cameron Downing_Stre")
+                .tt("James_Cameron Non_Existing_Entity_ZXCASD")
                 .execute();
         
 
         for (Relatedness r : relResponse.getResult())
-        	if (r.entitiesExist())
-        		System.out.printf("%s, %s rel=%f%n", r.getEntity0(), r.getEntity1(), r.getRel());
+            if (r.entitiesExist())
+                System.out.printf("%s, %s rel=%f%n", r.getEntity0(), r.getEntity1(), r.getRel());
+            else
+                System.out.printf("Could not compute relatedness for entities %s, %s, error: %s", r.getEntity0(), r.getEntity1(), r.getErr());
     }
 
 

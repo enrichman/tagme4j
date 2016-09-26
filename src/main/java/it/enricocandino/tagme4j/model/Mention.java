@@ -8,7 +8,7 @@ package it.enricocandino.tagme4j.model;
 public class Mention {
 
     private String spot;
-    private String lp;
+    private double lp;
     private int start;
     private int end;
 
@@ -21,10 +21,10 @@ public class Mention {
     }
 
     public double getLp() {
-        return Double.parseDouble(lp);
+        return lp;
     }
 
-    public void setLp(String lp) {
+    public void setLp(double lp) {
         this.lp = lp;
     }
 

@@ -8,18 +8,27 @@ package it.enricocandino.tagme4j.model;
 public class Relatedness {
 
     private String couple;
-    private String rel;
+    private double rel;
+    private String err;
 
     public void setCouple(String couple) {
         this.couple = couple;
     }
 
     public double getRel() {
-        return Double.parseDouble(rel);
+        return rel;
     }
 
-    public void setRel(String rel) {
+    public void setRel(double rel) {
         this.rel = rel;
+    }
+
+    public void setErr(String err) {
+        this.err = err;
+    }
+
+    public String getErr() {
+        return err;
     }
     
     public String getEntity0(){
@@ -31,6 +40,6 @@ public class Relatedness {
     }
     
     public boolean entitiesExist(){
-        return rel != null;
+		return err == null;
     }
 }

@@ -13,9 +13,9 @@ public class Annotation {
     private String title;
     private int start;
     private int end;
-    private String rho;
+    private double rho;
     private String spot;
-    private String link_probability;
+    private double link_probability;
     private List<String> dbpedia_categories;
 
     public int getId() {
@@ -51,10 +51,10 @@ public class Annotation {
     }
 
     public double getRho() {
-        return Double.parseDouble(rho);
+        return rho;
     }
 
-    public void setRho(String rho) {
+    public void setRho(double rho) {
         this.rho = rho;
     }
 
@@ -67,10 +67,10 @@ public class Annotation {
     }
 
     public double getLink_probability() {
-        return Double.parseDouble(link_probability);
+        return link_probability;
     }
 
-    public void setLink_probability(String link_probability) {
+    public void setLink_probability(double link_probability) {
         this.link_probability = link_probability;
     }
 
