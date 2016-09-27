@@ -37,10 +37,10 @@ public class TestMe extends TestCase {
 
         RelResponse relResponse = tagMeClient
                 .rel()
-                .tt("Linked_data Semantic_Web")
-                .tt("University_of_Pisa Massachusetts_Institute_of_Technology")
-                .tt("James_Cameron Downing_Street")
-                .tt("James_Cameron Non_Existing_Entity_ZXCASD")
+                .tt("Linked_data", "Semantic_Web")
+                .tt("University_of_Pisa", "Massachusetts_Institute_of_Technology")
+                .tt("James_Cameron", "Downing_Street")
+                .tt("James_Cameron", "Non_Existing_Entity_ZXCASD")
                 .execute();
         
 

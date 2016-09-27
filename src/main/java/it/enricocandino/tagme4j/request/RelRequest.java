@@ -66,11 +66,12 @@ public class RelRequest extends TagMeRequest<RelResponse> {
      * If one occurrence of tt parameter is found in the request,
      * any value provided using this parameter will be ignored.
      *
-     * @param id a pair of numeric identifiers for entities
+     * @param id1 the numeric identifier of the first entitiy
+     * @param id1 the numeric identifier of the second entitiy
      * @return
      */
-    public RelRequest id(String id) {
-        builder.addQueryParameter("id", id);
+    public RelRequest id(long id1, long id2) {
+        builder.addQueryParameter("id", id1+" "+id2);
         return this;
     }
 
@@ -87,11 +88,12 @@ public class RelRequest extends TagMeRequest<RelResponse> {
      * If one occurrence of id parameter is found in the request,
      * any value provided using this parameter will be ignored.
      *
-     * @param tt a pair of entity titles
+     * @param t1 the title of the first entitiy
+     * @param t2 the title of the first entitiy
      * @return
      */
-    public RelRequest tt(String tt) {
-        builder.addQueryParameter("tt", tt);
+    public RelRequest tt(String t1, String t2) {
+        builder.addQueryParameter("tt", t1+" "+t2);
         return this;
     }
 
