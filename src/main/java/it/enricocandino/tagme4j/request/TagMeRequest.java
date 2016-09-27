@@ -35,24 +35,33 @@ public abstract class TagMeRequest<T extends TagMeResponse> {
 
     protected abstract Request getRequest();
 
-    public T execute() {
-        T tagMeResponse = null;
+    public T execute() throws TagMeException {
+        T tagMeResponse;
 
         try {
             OkHttpClient client = tagMeClient.getClient();
             Gson gson = tagMeClient.getGson();
 
             Response response = client.newCall(getRequest()).execute();
-            if (response.code() != 200)
-                throw new TagMeException(
-                    String.format("Request to TagMe failed with HTTP code %d, message: %s",
-                                  response.code(),
-                                  response.body().string()));
 
-            String json = response.body().string();
-            tagMeResponse = gson.fromJson(json, clazz);
+            if (response.isSuccessful()) {
+                String json = response.body().string();
+                tagMeResponse = gson.fromJson(json, clazz);
+
+            } else {
+                throw new TagMeException(
+                        String.format("Request to TagMe failed with HTTP code %d, message: %s",
+                                response.code(),
+                                response.body().string()
+                        )
+                );
+            }
+
+        } catch (TagMeException e) {
+            throw e;
+
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new TagMeException("Error executing TagMeRequest", e);
         }
 
         return tagMeResponse;

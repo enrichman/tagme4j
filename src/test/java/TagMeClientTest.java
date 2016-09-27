@@ -4,26 +4,31 @@
  * Distributed under the MIT License.
  */
 import it.enricocandino.tagme4j.TagMeClient;
+import it.enricocandino.tagme4j.TagMeException;
 import it.enricocandino.tagme4j.model.Annotation;
 import it.enricocandino.tagme4j.model.Mention;
 import it.enricocandino.tagme4j.model.Relatedness;
 import it.enricocandino.tagme4j.response.RelResponse;
 import it.enricocandino.tagme4j.response.SpotResponse;
 import it.enricocandino.tagme4j.response.TagResponse;
-import junit.framework.TestCase;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class TagMeClientTest extends TestCase {
+public class TagMeClientTest {
 
-    private TagMeClient tagMeClient;
+    private static TagMeClient tagMeClient;
 
     @BeforeClass
-    public void setUp() {
+    public static void setUp() {
         String apiKey = System.getenv("API_KEY");
+        assertNotNull("Please set your API_KEY as environment variable", apiKey);
+
         tagMeClient = new TagMeClient(apiKey);
     }
 
-    public void testTagRequest() {
+    @Test
+    public void testTagRequest() throws TagMeException {
         TagResponse tagResponse = tagMeClient
                 .tag()
                 .text("Obama visited Merkel in Budapest")
@@ -34,7 +39,13 @@ public class TagMeClientTest extends TestCase {
         }
     }
 
-    public void testSpotRequest() {
+    @Test(expected=TagMeException.class)
+    public void testTagRequest_empty() throws TagMeException {
+        tagMeClient.tag().execute();
+    }
+
+    @Test
+    public void testSpotRequest() throws TagMeException {
         SpotResponse spotResponse = tagMeClient
                 .spot()
                 .text("Ice cream is good because it contains sugar")
@@ -45,8 +56,9 @@ public class TagMeClientTest extends TestCase {
         }
     }
 
-    public void testRelRequest_id() {
-        RelResponse relResponse1 = tagMeClient
+    @Test
+    public void testRelRequest_id() throws TagMeException {
+        RelResponse relResponse = tagMeClient
                 .rel()
                 .id(534366, 72671)
                 .id(534366, 36787)
@@ -54,7 +66,13 @@ public class TagMeClientTest extends TestCase {
                 .id(0, 367873434324435L)
                 .execute();
 
-        for (Relatedness r : relResponse1.getResult()) {
+        assertEquals(relResponse.getResult().size(), 4);
+        assertNull(relResponse.getResult().get(0).getErr());
+        assertNull(relResponse.getResult().get(1).getErr());
+        assertNotNull(relResponse.getResult().get(2).getErr());
+        assertNotNull(relResponse.getResult().get(3).getErr());
+
+        for (Relatedness r : relResponse.getResult()) {
             if (r.getErr() == null) {
                 System.out.printf("%s, %s rel=%f%n", r.getEntity1(), r.getEntity2(), r.getRel());
             } else {
@@ -63,8 +81,9 @@ public class TagMeClientTest extends TestCase {
         }
     }
 
-    public void testRelRequest_tt() {
-        RelResponse relResponse2 = tagMeClient
+    @Test
+    public void testRelRequest_tt() throws TagMeException {
+        RelResponse relResponse = tagMeClient
                 .rel()
                 .tt("Linked_data", "Semantic_Web")
                 .tt("University_of_Pisa", "Massachusetts_Institute_of_Technology")
@@ -72,7 +91,7 @@ public class TagMeClientTest extends TestCase {
                 .tt("James_Cameron", "Non_Existing_Entity_ZXCASD")
                 .execute();
 
-        for (Relatedness r : relResponse2.getResult()) {
+        for (Relatedness r : relResponse.getResult()) {
             if (r.getErr() == null) {
                 System.out.printf("%s, %s rel=%f%n", r.getEntity1(), r.getEntity2(), r.getRel());
             } else {
