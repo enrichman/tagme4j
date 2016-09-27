@@ -43,4 +43,14 @@ public class Mention {
     public void setEnd(int end) {
         this.end = end;
     }
+
+    @Override
+    public String toString() {
+        return "Mention{" +
+                "spot='" + spot + '\'' +
+                ", lp=" + lp +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
+    }
 }

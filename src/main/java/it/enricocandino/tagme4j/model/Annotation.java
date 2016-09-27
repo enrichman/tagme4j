@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Annotation {
 
-    private int id;
+    private long id;
     private String title;
     private int start;
     private int end;
@@ -22,11 +22,11 @@ public class Annotation {
     @SerializedName("dbpedia_categories")
     private List<String> dbpediaCategories;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -86,5 +86,33 @@ public class Annotation {
         this.dbpediaCategories = dbpediaCategories;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Annotation that = (Annotation) o;
+
+        return id == that.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
+
+    @Override
+    public String toString() {
+        return "Annotation{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", rho=" + rho +
+                ", spot='" + spot + '\'' +
+                ", linkProbability=" + linkProbability +
+                ", dbpediaCategories=" + dbpediaCategories +
+                '}';
+    }
 }

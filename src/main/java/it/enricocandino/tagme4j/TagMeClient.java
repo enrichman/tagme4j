@@ -6,6 +6,9 @@
 package it.enricocandino.tagme4j;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import it.enricocandino.tagme4j.json.RelatednessDeserializer;
+import it.enricocandino.tagme4j.model.Relatedness;
 import it.enricocandino.tagme4j.request.RelRequest;
 import it.enricocandino.tagme4j.request.SpotRequest;
 import it.enricocandino.tagme4j.request.TagRequest;
@@ -27,7 +30,9 @@ public class TagMeClient {
     public TagMeClient(String apikey) {
         this.apikey = apikey;
         this.client = new OkHttpClient();
-        this.gson = new Gson();
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(Relatedness.class, new RelatednessDeserializer())
+                .create();
     }
 
     public TagRequest tag() {
